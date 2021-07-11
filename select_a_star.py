@@ -1,4 +1,5 @@
 from asciimatics.screen import ManagedScreen
+
 from time import sleep
 
 mat = [[".    ● . ..   .               . "],
