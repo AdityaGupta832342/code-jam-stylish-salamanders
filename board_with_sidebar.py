@@ -1,6 +1,9 @@
 from asciimatics.screen import ManagedScreen
 # import pyautogui
 
+def export():
+    pass
+
 def was_color_clicked(x,y):
     """Checks if the click was within bounds of the color selection box"""
     x_end = screen.width
@@ -29,6 +32,16 @@ def which_marker(x,y):
     for index,value in enumerate(["*",".","@","$","o","▇"]):
         if x == screen.width-(screen.width//5)+(index*2) and y == (((screen.height//2)//4)*2)+4:
             return value
+    return None
+
+def which_button(x,y):
+    """returns the button that was clicked"""
+    w = screen.width
+    h = screen.height
+    if x >= w//5*4+1 and y < h//2+3 and x <= w-1 and y >= h//2+1:
+        return "clear"
+    if x >= w//5*4+1 and y >= h//2+4 and x <= w-1 and y < h//2+6:
+        return "export"
     return None
 
 def print_sidebar(screen):
@@ -62,6 +75,12 @@ def print_sidebar(screen):
     for index,value in enumerate(["*",".","@","$","o","▇"]):
         screen.print_at(value,w-(colour_spot_w*(4))+(index*2),(colour_spot_h*2)+4,0,bg=7)
 
+    # Other buttons
+    screen.fill_polygon([[(w//5*4+1, h//2+3), (w-1, h//2+3), (w-1, h//2+1), (w//5*4+1, h//2+1)]],bg=4,colour=4)
+    screen.fill_polygon([[(w//5*4+1, h//2+6), (w-1, h//2+6), (w-1, h//2+4), (w//5*4+1, h//2+4)]],bg=5,colour=5)
+    screen.print_at("Clear",w//5*4+1, h//2+1,7,bg=4)
+    screen.print_at("Export",w//5*4+1, h//2+4,7,bg=5)
+
     screen.refresh()
 
 stack= []
@@ -90,6 +109,13 @@ with ManagedScreen() as screen:
                     temp = which_marker(a.x,a.y)
                     if temp is not None:
                         current_marker = temp
+                    temp = which_button(a.x,a.y)
+                    if temp == "export":
+                        export()
+                    elif temp == "clear":
+                        screen.clear()
+                        stack.clear()
+                        print_sidebar(screen)
             else:
                 if a.buttons == 2: # right_click
                     stack.append([a.x, a.y])
