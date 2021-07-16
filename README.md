@@ -7,7 +7,7 @@ The theme for the code jam is "Think inside the box."
 <img src="screenshots/code.png">
 
 ## What is our program?
-We interpreted the theme as a form of limitations and boudaries, and one of the common limitation of the terminal is the inability to do graphical stuff. So we decided to break this limitation and made a blackboard on terminal. You can draw, paint and do other cool stuff.  
+We interpreted the theme as a form of limitations and boundaries, and one of the common limitation of the terminal is the inability to do graphical stuff. So we decided to allow the user to do whatever they want to, inside the box(Terminal window). They could draw, paint and the only limitation aside from the boundaries of the window, is your imagination.
 
 ## Installation
 Please install the requirements using the command below
