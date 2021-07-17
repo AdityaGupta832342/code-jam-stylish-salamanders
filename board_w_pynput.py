@@ -7,7 +7,7 @@ def export(screen: ManagedScreen) -> None:
     """Literally does nothing but here's a docstring (can you tell i'm slightly salty)"""
     str_ = ""
     for i in range(screen.height):
-        for j in range(screen.width):
+        for j in range(screen.width//5*4):
             try:
                 current_char, fg, attr, bg = screen.get_from(j, i)
             except TypeError:
@@ -163,7 +163,7 @@ with ManagedScreen() as screen:
                         current_marker = temp
                     temp = which_button(a.x, a.y)
                     if temp == "export":
-                        export()
+                        export(screen)
                     elif temp == "clear":
                         screen.clear()
                         stack.clear()

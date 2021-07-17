@@ -34,3 +34,6 @@ build/
 # Sublime
 *.sublime-project
 *.sublime-workspace
+
+# Saves
+save.txt
