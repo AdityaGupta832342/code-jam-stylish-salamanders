@@ -3,9 +3,20 @@ from asciimatics.screen import ManagedScreen
 from pynput import mouse
 
 
-def export() -> None:
+def export(screen: ManagedScreen) -> None:
     """Literally does nothing but here's a docstring (can you tell i'm slightly salty)"""
-    pass
+    str_ = ""
+    for i in range(screen.height):
+        for j in range(screen.width):
+            try:
+                current_char, fg, attr, bg = screen.get_from(j, i)
+            except TypeError:
+                current_char = 32
+            str_ += chr(current_char)
+        str_ += "\n"
+    file = open("save.txt", 'w')
+    file.write(str_)
+    file.close()
 
 
 def was_color_clicked(x: int, y: int) -> bool:
@@ -103,7 +114,6 @@ def is_clicked(x: int, y: int, button: MouseEvent, pressed: bool) -> None:
 def on_move(x: int, y: int) -> None:
     """Define cursor position"""
     global mx, my
-
     mx = x
     my = y
 
@@ -114,8 +124,8 @@ def on_scroll(x: int, y: int, dx: int, dy: int) -> None:
 
 
 stack = []
-clicked = False
 mx, my = 0, 0
+clicked = False
 listener = mouse.Listener(
     on_move=on_move,
     on_click=is_clicked,
