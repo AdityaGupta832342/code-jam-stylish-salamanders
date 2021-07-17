@@ -15,11 +15,19 @@ Please install the requirements using the command below
 $ pip install -r requirements.txt
 ```
 then you can just run the main.py script, like so
+```cmd
+py main_windows.py
+```
+and for unix OS
 ```shell
-$ python main.py
+$ python main_unix.py
 ```
 ## Team : Stylish Salamanders
 
+## Key Bindings:
+`c` to clear screen
+
+`q` to exit
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
