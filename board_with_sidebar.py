@@ -1,5 +1,6 @@
+from asciimatics.event import MouseEvent
 from asciimatics.screen import ManagedScreen
-# import pyautogui
+from pynput import mouse
 
 
 def export() -> None:
@@ -93,7 +94,34 @@ def print_sidebar(screen: ManagedScreen) -> None:
     screen.refresh()
 
 
+def is_clicked(x: int, y: int, button: MouseEvent, pressed: bool) -> None:
+    """Sets clicked state based on pynput mouse listener"""
+    global clicked
+    clicked = True if pressed else False
+
+
+def on_move(x: int, y: int) -> None:
+    """Sefine cursor position"""
+    global mx, my
+
+    mx = x
+    my = y
+
+
+def on_scroll(x: int, y: int, dx: int, dy: int) -> None:
+    """Sefine mouse scroll"""
+    pass
+
+
 stack = []
+clicked = False
+mx, my = 0, 0
+listener = mouse.Listener(
+    on_move=on_move,
+    on_click=is_clicked,
+    on_scroll=on_scroll)
+listener.start()
+
 with ManagedScreen() as screen:
     print_sidebar(screen)
     current_color = 7
@@ -102,6 +130,10 @@ with ManagedScreen() as screen:
     while True:
         screen.wait_for_input(5)
         a = screen.get_event()
+        if a:
+            screen.print_at(f"{a} - {clicked}", 0, 0, bg=5)
+            if clicked:
+                screen.print_at(current_marker, a.x, a.y, current_color)
 
         if hasattr(a, 'key_code'):
             if a.key_code == 99:  # c
@@ -138,8 +170,6 @@ with ManagedScreen() as screen:
                     for i in range(-1, 2):
                         for j in range(-1, 2):
                             screen.print_at(current_marker, a.x + i, a.y + j, current_color)
-                else:  # left_click
-                    screen.print_at(current_marker, a.x, a.y, current_color)
         else:
             # screen.print_at("Didn't detect key press or button",0,0)
             pass
