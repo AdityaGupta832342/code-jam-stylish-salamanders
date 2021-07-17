@@ -101,7 +101,7 @@ def is_clicked(x: int, y: int, button: MouseEvent, pressed: bool) -> None:
 
 
 def on_move(x: int, y: int) -> None:
-    """Sefine cursor position"""
+    """Define cursor position"""
     global mx, my
 
     mx = x
@@ -109,7 +109,7 @@ def on_move(x: int, y: int) -> None:
 
 
 def on_scroll(x: int, y: int, dx: int, dy: int) -> None:
-    """Sefine mouse scroll"""
+    """Define mouse scroll"""
     pass
 
 
