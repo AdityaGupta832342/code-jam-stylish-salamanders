@@ -7,7 +7,7 @@ The theme for the code jam is "Think inside the box."
 <img src="screenshots/code.png">
 
 ## What is our program?
-We interpreted the theme as a form of limitations and boundaries, and one of the common limitation of the terminal is the inability to do graphical stuff. So we decided to allow the user to do whatever they want to, inside the box(Terminal window). They could draw, paint and the only limitation aside from the boundaries of the window, is your imagination.
+We interpreted the theme as a form of boundaries, and one of the most common limitations of the terminal is the inability to use and create graphics. This is why we created a board for brainstorming, drawing, whatever the user wants to do - but only within the box of the terminal window. Aside from having to 'think inside the box', the only limit is the user's imagination.
 
 ## Installation
 Please install the requirements using the command below
